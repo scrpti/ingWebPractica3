@@ -1,0 +1,19 @@
+<div class="flex flex-col items-center gap-4 p-4">
+  <div class="w-full max-w-md">
+    <div class="flex rounded-md shadow-sm">
+      <input
+        type="search"
+        [(ngModel)]="textoBusqueda"
+        (input)="onSearchChange()"
+        placeholder="Buscar..."
+        class="flex-grow rounded-l-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring-inset focus:ring-blue-200 focus:ring-opacity-50"
+      />
+      <button
+        type="button"
+        class="rounded-r-md bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+      >
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</div>

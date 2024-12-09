@@ -1,0 +1,52 @@
+<div class="mt-4 flex items-center justify-center gap-4 px-2">
+  <app-barra-busqueda
+    (busqueda)="onSearchTextChanged($event)"
+    class="flex-grow"
+  ></app-barra-busqueda>
+
+  <button
+    (click)="crearWiki()"
+    class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+  >
+    Crear wiki
+  </button>
+</div>
+
+<div
+  class="mt-4 flex max-w-full flex-col gap-5 rounded-lg bg-gray-50 p-5 shadow-lg"
+>
+  @if (wikisFiltradas.length > 0) {
+    <ul class="w-full gap-5 space-y-4">
+      @for (wiki of wikisFiltradas; track wiki.id) {
+        <li
+          (click)="handleWikiClick(wiki.id)"
+          class="flex w-full cursor-pointer flex-col justify-between gap-5 rounded-lg bg-white p-4 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:transform hover:bg-blue-50 hover:shadow-xl sm:flex-row"
+        >
+          <div class="flex-grow cursor-pointer">
+            <h2 class="text-xl font-semibold text-gray-800">
+              {{ wiki.nombre }}
+            </h2>
+            <img
+              [src]="wiki.imagenUrl"
+              alt="Imagen de la wiki"
+              class="h-32 w-32 rounded-md object-cover"
+            />
+          </div>
+          <div class="flex items-center justify-end gap-2">
+            <app-boton-editar
+              (click)="$event.stopPropagation(); editarWiki(wiki.id)"
+            ></app-boton-editar>
+            <button
+              (click)="$event.stopPropagation(); borrarWiki(wiki.id)"
+              class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+            >
+              Borrar
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <h2 class="text-center text-gray-500">No se encontraron resultados</h2>
+  }
+</div>

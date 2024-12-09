@@ -1,0 +1,43 @@
+<div class="max-w-4xl mx-auto mt-8">
+  <h1 class="text-3xl font-bold mb-6 text-center">Comentarios</h1>
+
+  <div>
+    <form
+      [formGroup]="comentarioForm"
+      (ngSubmit)="crearComentario()"
+      class="flex items-center mb-4"
+    >
+      <div class="flex w-full items-center">
+        <input
+          type="text"
+          id="contenido"
+          class="flex-grow rounded-l-md border border-gray-200 px-4 py-2 text-base shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-inset focus:ring-blue-200 focus:ring-opacity-50"
+          formControlName="contenido"
+          placeholder="Escribe tu comentario..."
+        />
+        <button
+          type="submit"
+          class="rounded-r-md bg-blue-500 px-4 py-[8.95px] text-base text-white font-bold hover:bg-blue-600"
+        >
+          Crear
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div
+    *ngFor="let comentario of comentarios"
+    class="bg-white rounded-lg shadow-lg p-6 mb-4"
+    style="
+      box-shadow:
+        0 0.5px 7px rgba(0, 0, 0, 0.3),
+        0 -0.5px 5px rgba(0, 0, 0, 0.3);
+    "
+  >
+    <h5 class="text-sm text-gray-500">Autor: {{ comentario.nombreUsuario }}</h5>
+    <h5 class="text-sm text-gray-500">
+      Fecha: {{ formatearFecha(comentario.fechaCreacion) }}
+    </h5>
+    <p class="text-gray-800 text-lg">{{ comentario.contenido }}</p>
+  </div>
+</div>

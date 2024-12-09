@@ -1,0 +1,10 @@
+button {
+    display: inline-flex;
+    justify-content: right;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #eab308; /* Un tono más oscuro */
+  }
+  

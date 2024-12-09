@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Subir Imagen</h2>
+    <form (ngSubmit)="onSubmit()" #fileForm="ngForm">
+      <input type="file" (change)="onFileSelected($event)" required>
+      <button type="submit" [disabled]="!selectedFile">Subir</button>
+    </form>
+    <div *ngIf="mensaje" class="mensaje">
+      {{ mensaje }}
+    </div>
+  </div>
+  

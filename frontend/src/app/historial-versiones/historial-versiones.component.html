@@ -1,0 +1,50 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 my-8">
+        <div class="flex items-center justify-between mb-4">
+            <h5 class="text-xl font-bold leading-none text-gray-900">Historial de versiones</h5>
+        </div>
+        <div class="flow-root">
+            @if (versiones.length === 0) {
+                <div class="text-center py-4 text-gray-500">
+                    No hay versiones para esta entrada.
+                </div>
+            }
+            @else {
+            <ul role="list" class="divide-y divide-gray-200">
+                @for (version of versiones; track $index) {
+                <li class="py-3 sm:py-4">
+                    <div class="flex items-center">
+                        <!-- <div class="flex-shrink-0">
+                            <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
+                        </div> -->
+                        <div class="flex-1 min-w-0 ms-4">
+                            <p class="text-sm font-medium text-gray-900 truncate">
+                                <a [href]="'/usuario/' + version.idUsuario">
+                                    {{version.nombreUsuario}}
+                                </a>
+                            </p>
+                            <p class="text-sm text-gray-500 truncate">
+                                {{ formatDate(version.fechaEdicion) }}
+                            </p>
+                        </div>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                            <!-- <a
+                                href="#"
+                                class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+                            > -->
+                            <button
+                                class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 cursor-not-allowed bg-gray-300 opacity-50 rounded-lg border border-gray-200"
+                                disabled
+                                aria-disabled="true"
+                            >
+                                Ver
+                        </button>
+                        </div>
+                    </div>
+                </li>
+                }
+            </ul>
+            }
+        </div>
+    </div>
+</div>

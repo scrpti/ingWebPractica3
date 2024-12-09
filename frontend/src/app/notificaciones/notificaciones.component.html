@@ -1,0 +1,86 @@
+<div class="notificaciones-container">
+  <div class="campana" (click)="toggleDesplegable()">
+    <i class="fa fa-bell"></i>
+    <span *ngIf="notificacionesSinLeer > 0" class="contador">{{
+      notificacionesSinLeer
+    }}</span>
+  </div>
+  <div class="desplegable" *ngIf="mostrarDesplegable">
+    <h3 class="titulo">Notificaciones</h3>
+    <button
+      class="limpiar-notificaciones text-red-600"
+      (click)="limpiarNotificaciones()"
+    >
+      Limpiar
+    </button>
+    <div class="filtros">
+      <button
+        class="filtro"
+        [class.active]="filtroActual === 'todas'"
+        (click)="filtrarNotificaciones('todas')"
+      >
+        Todas
+      </button>
+      <div class="fila-inferior">
+        <button
+          class="filtro"
+          [class.active]="filtroActual === 'pendientes'"
+          (click)="filtrarNotificaciones('pendientes')"
+        >
+          Pendientes
+        </button>
+        <div class="separador"></div>
+        <button
+          class="filtro"
+          [class.active]="filtroActual === 'leidas'"
+          (click)="filtrarNotificaciones('leidas')"
+        >
+          Leídas
+        </button>
+      </div>
+    </div>
+    <ng-container
+      *ngIf="notificacionesFiltradas.length > 0; else noNotificaciones"
+    >
+      <ul>
+        <li
+          *ngFor="let notificacion of notificacionesFiltradas"
+          [class.no-leida]="!notificacion.is_read"
+        >
+          <button
+            class="borrar-notificacion"
+            (click)="eliminarNotificacion(notificacion, $event)"
+          >
+            x
+          </button>
+          <div
+            class="notificacion-contenido"
+            (click)="redirigirEntrada(notificacion)"
+          >
+            <div class="notificacion-mensaje">{{ notificacion.message }}</div>
+            <div class="notificacion-fecha">
+              {{ notificacion.timestamp | date: "dd/MM/yyyy HH:mm" }}
+            </div>
+          </div>
+          <button
+            *ngIf="!notificacion.is_read"
+            class="marcar-leido"
+            (click)="marcarComoLeida(notificacion, $event)"
+          >
+            Marcar como leído
+          </button>
+          <button
+            *ngIf="notificacion.is_read"
+            class="marcar-no-leido"
+            (click)="marcarComoNoLeida(notificacion, $event)"
+          >
+            Marcar como no leído
+          </button>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #noNotificaciones>
+      <div class="no-notificaciones">No hay notificaciones</div>
+    </ng-template>
+  </div>
+</div>

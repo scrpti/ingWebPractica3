@@ -1,0 +1,43 @@
+<h1 class="p-4 text-center text-xl font-semibold">
+  Lista de entradas de la wiki {{ nombre_wiki }}
+</h1>
+
+<div #imagen class="my-4 flex justify-center">
+  <img [src]="imagenUrl" alt="Imagen de la wiki {{ nombre_wiki }}"
+    class="h-64 w-64 rounded-lg object-cover shadow-lg" />
+</div>
+
+<div class="filter-container flex justify-center">
+  <app-filter-entradas (filtroAplicado)="aplicarFiltro($event)" />
+</div>
+
+<div class="crearEntrada-button mt-4 flex justify-end px-2">
+  <button (click)="crearEntrada()" class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+    Crear entrada
+  </button>
+</div>
+
+<div class="wiki-list mt-4 flex max-w-full flex-col gap-5 rounded-lg bg-gray-50 p-5 shadow-lg">
+  <ul *ngIf="entradasFiltradas.length > 0; else sinResultados" class="w-full gap-5 space-y-4">
+    <li *ngFor="let entrada of entradasFiltradas"
+      class="flex w-full cursor-pointer flex-col justify-between gap-5 rounded-lg bg-white p-4 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:transform hover:bg-blue-50 hover:shadow-xl sm:flex-row">
+      <div (click)="handleEntradaClick(entrada.id)" class="flex-grow cursor-pointer">
+        <h2 class="text-xl font-semibold text-gray-800">
+          {{ entrada.nombre }}
+        </h2>
+        <p>{{ entrada.nombreUsuario }}</p>
+        <p>Fecha de creación: {{ formatearFecha(entrada.fechaCreacion) }}</p>
+      </div>
+      <button (click)="borrarEntrada(entrada.id)"
+        class="w-[150px] rounded bg-red-300 px-4 py-1 text-white hover:bg-red-600" style="height: min-content">
+        Borrar
+      </button>
+    </li>
+  </ul>
+</div>
+
+<ng-template #sinResultados>
+  <h2 class="text-center text-gray-500">No se encontraron resultados</h2>
+</ng-template>
+
+<app-boton-atras></app-boton-atras>

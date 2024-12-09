@@ -1,0 +1,60 @@
+<nav class="bg-white shadow-md mb-4">
+  <div class="mx-auto flex max-w-screen-xl items-center justify-between p-4">
+    <a class="flex items-center" href="/">
+      <img src="/assets/faviconCircular.ico" alt="Logo" class="mr-2 w-12" />
+      <span class="text-xl font-semibold">laWiki</span>
+    </a>
+    <button
+      class="text-gray-600 hover:text-gray-800 focus:outline-none lg:hidden"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="mb-2 block h-0.5 w-6 bg-gray-600"></span>
+      <span class="mb-2 block h-0.5 w-6 bg-gray-600"></span>
+      <span class="block h-0.5 w-6 bg-gray-600"></span>
+    </button>
+    <div class="hidden flex-grow items-center lg:flex" id="navbarNav">
+      <ul class="ml-auto flex items-center space-x-6">
+        <li class="flex items-center">
+          <div class="flex items-center">
+            <app-notificaciones></app-notificaciones>
+          </div>
+        </li>
+        @if (usuarioEnSesion()) {
+          @if (usuarioEsAdmin()) {
+            <li class="flex items-center">
+              <a class="cursor-not-allowed text-gray-400" href="#"
+                >Administrar usuarios</a
+              >
+            </li>
+          }
+          <li class="flex items-center">
+            <a
+              class="text-gray-800 hover:text-blue-600"
+              href="/perfil/673d2a12ada998325690b320"
+              >Perfil</a
+            >
+          </li>
+          <li class="flex items-center">
+            <a class="cursor-not-allowed text-gray-400" href="#"
+              >Cerrar sesión</a
+            >
+          </li>
+        } @else {
+          <li class="flex items-center">
+            <a class="cursor-not-allowed text-gray-400" href="#">Registrarse</a>
+          </li>
+          <li class="flex items-center">
+            <a class="cursor-not-allowed text-gray-400" href="#"
+              >Iniciar sesión</a
+            >
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

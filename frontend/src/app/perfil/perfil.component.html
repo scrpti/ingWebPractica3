@@ -1,0 +1,52 @@
+<div class="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-md">
+  <h1 class="mb-6 text-center text-3xl font-semibold text-gray-800">Perfil</h1>
+
+  <div class="mb-6 flex items-center justify-center">
+    <div
+      class="flex h-24 w-24 items-center justify-center rounded-full bg-blue-500 text-3xl font-bold text-white"
+    >
+      {{ usuarioData?.name?.charAt(0).toUpperCase() }}
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-lg font-medium text-gray-600">Nombre</span>
+      <span class="text-lg text-gray-800">{{ usuarioData?.name }}</span>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <span class="text-lg font-medium text-gray-600">Email</span>
+      <span class="text-lg text-gray-800">{{ usuarioData?.email }}</span>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <span class="text-lg font-medium text-gray-600">Rol</span>
+      <span class="text-lg text-gray-800">{{ usuarioData?.role }}</span>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <span class="text-lg font-medium text-gray-600"
+        >Notificaciones por correo</span
+      >
+      <span class="text-lg text-gray-800">{{
+        usuarioData?.wants_emails === "true" ? "Sí" : "No"
+      }}</span>
+    </div>
+  </div>
+
+  <div class="mt-8 flex justify-center space-x-4">
+    <button
+      class="rounded-md bg-green-600 px-6 py-2 text-white transition duration-200 hover:bg-green-700"
+      [routerLink]="['/usuario', idUsuario]"
+    >
+      Mis valoraciones
+    </button>
+
+    <button
+      class="rounded-md bg-blue-600 px-6 py-2 text-white transition duration-200 hover:bg-blue-700"
+    >
+      Editar Perfil
+    </button>
+  </div>
+</div>

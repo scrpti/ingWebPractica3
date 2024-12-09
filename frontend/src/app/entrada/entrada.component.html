@@ -1,0 +1,55 @@
+<div
+  class="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-2xl"
+  style="
+    box-shadow:
+      0 5px 7px rgba(0, 0, 0, 0.3),
+      0 -0.5px 5px rgba(0, 0, 0, 0.3);
+  "
+>
+  <div class="mb-4 flex items-center justify-between">
+    <h2 class="text-3xl font-bold text-gray-900">{{ nombreEntrada }}</h2>
+
+    <div class="flex gap-2">
+      <app-boton-editar (click)="$event.stopPropagation(); editarEntrada()" />
+      <button
+        (click)="verVersiones()"
+        class="rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600"
+      >
+        Historial de versiones
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-between text-sm text-gray-600">
+    <div class="flex items-center space-x-2">
+      <span class="font-semibold">Usuario:</span>
+      <a
+        [routerLink]="['/usuario', idUsuario]"
+        class="text-gray-700 transition duration-200 hover:text-gray-900 hover:underline"
+      >
+        {{ nombreUsuario }}
+      </a>
+    </div>
+
+    <div class="flex items-center space-x-2">
+      <span class="font-semibold">Fecha de creación:</span>
+      <span>{{ fechaCreacion | date: "dd MMMM yyyy" }}</span>
+    </div>
+  </div>
+
+  <!-- Espera a que el id de la versión actual esté disponible -->
+  @if (versionActualId) {
+    <app-version [versionId]="versionActualId"></app-version>
+  }
+
+  @if (tieneMapa) {
+    <app-mapas
+      [entradaId]="entradaId"
+      [ubicacion]="$any(entradaForm.get('ubicacion'))"
+    ></app-mapas>
+  }
+</div>
+
+<div #comentarios>
+  <app-comentarios></app-comentarios>
+</div>

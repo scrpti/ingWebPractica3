@@ -1,0 +1,25 @@
+<div class="mx-auto mt-4 max-w-3xl">
+  <h2 class="mb-4 text-xl font-semibold text-gray-800">Valoraciones</h2>
+
+  <div *ngIf="valoraciones.length === 0" class="text-center text-gray-600">
+    <p>Ninguna valoración aún</p>
+  </div>
+
+  <ul *ngIf="valoraciones.length > 0" class="space-y-4">
+    <li
+      *ngFor="let valoracion of valoraciones"
+      class="relative rounded-lg bg-white p-4 shadow"
+    >
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-gray-700">
+          {{ valoracion.nombreRedactor || "Cargando..." }}
+        </p>
+        <div class="flex items-center text-yellow-400">
+          <ng-container *ngFor="let estrella of getEstrellas(valoracion.nota)">
+            <i [class]="estrella"></i>
+          </ng-container>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
